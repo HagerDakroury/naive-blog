@@ -1,8 +1,10 @@
 const express =  require('express');
 const {randomBytes} = require('crypto');
+const cors = require('cors');
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true})); 
 
@@ -28,6 +30,6 @@ app.post('/posts', (req,res) => {
 
 
 
-app.listen(3008, () => {
-    console.log('listening on 3008');
+app.listen(3003, () => {
+    console.log('listening on 3003');
 });

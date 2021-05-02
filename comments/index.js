@@ -12,22 +12,21 @@ const commentsById = {};
 
 
 app.get('/posts/:id/comments', (req,res) => {
-    const postId = req.params.id;
-    
-    res.send(commentsById[postId] || []);
+    console.log(req.params.id)
+    res.send(commentsById[req.params.id] || []);
 
 });
 
 app.post('/posts/:id/comments', (req,res) => {
-    console.log('got it');
     const commentId = randomBytes(3).toString('hex');
-    const postId = req.params.id;
     const {content} = req.body;
-    const commentsOfPost = commentsById[postId] || [];
+    const commentsOfPost = commentsById[req.params.id] || [];
 
     commentsOfPost.push({id: commentId, content : content});
 
-    commentsById[postId]= commentsOfPost;
+    commentsById[req.params.id]= commentsOfPost;
+    console.log(commentsById);
+
     res.status(201).send(commentsOfPost);
 
 });

@@ -19,18 +19,21 @@ app.get('/posts/:id/comments', (req,res) => {
 });
 
 app.post('/posts/:id/comments', (req,res) => {
+    console.log('got it');
     const commentId = randomBytes(3).toString('hex');
     const postId = req.params.id;
     const {content} = req.body;
+    const commentsOfPost = commentsById[postId] || [];
 
-    commentsById[postId].push({id: commentId, content : content});
+    commentsOfPost.push({id: commentId, content : content});
 
-    res.status(201).send(commentsById[postId]);
+    commentsById[postId]= commentsOfPost;
+    res.status(201).send(commentsOfPost);
 
 });
 
 
 
-app.listen(3004, () => {
-    console.log('listening on 3004');
+app.listen(4001, () => {
+    console.log('listening on 4001');
 });

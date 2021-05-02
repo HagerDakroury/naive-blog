@@ -30,6 +30,6 @@ app.post('/posts', (req,res) => {
 
 
 
-app.listen(3003, () => {
-    console.log('listening on 3003');
+app.listen(4000, () => {
+    console.log('listening on 4000');
 });
